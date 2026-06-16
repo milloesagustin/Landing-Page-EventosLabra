@@ -1,0 +1,6 @@
+{
+  "name": "Eventos Labra",
+  "description": "Landing page de alta gama para la productora de matrimonios y eventos exclusivos Eventos Labra.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
