@@ -337,15 +337,14 @@
             min-height: 100vh;
             background-color: var(--color-primary);
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         /* Configuración de Pantalla de Dos Columnas en Desktop */
         @media (min-width: 992px) {
             .hero {
-                display: grid;
-                grid-template-columns: 1.15fr 0.85fr;
-                align-items: stretch;
-                justify-content: stretch;
                 padding-top: 76px;
             }
         }
@@ -366,11 +365,10 @@
 
         @media (min-width: 992px) {
             .hero-content {
-                grid-column: 1;
                 align-items: flex-start;
                 text-align: left;
                 padding: 0 100px 0 120px;
-                max-width: 100%;
+                max-width: 1000px;
                 margin: 0;
             }
         }
@@ -489,29 +487,6 @@
             animation: zoomSlow 18s ease-in-out infinite alternate;
         }
 
-        @media (min-width: 992px) {
-            .hero-bg-container {
-                position: relative;
-                grid-column: 2;
-                height: 100%;
-                width: 100%;
-                border-left: 1px solid var(--border-subtle);
-            }
-
-            .hero-bg-container::before {
-                content: '';
-                position: absolute;
-                inset: 0;
-                background: linear-gradient(90deg, var(--color-primary) 0%, rgba(10, 10, 10, 0) 100%);
-                z-index: 2;
-                pointer-events: none;
-            }
-
-            .hero-slide.active {
-                opacity: 0.65;
-            }
-        }
-
         .hero::before {
             content: '';
             position: absolute;
@@ -521,12 +496,6 @@
             height: 100%;
             background: linear-gradient(180deg, rgba(10, 10, 10, 0.4) 0%, var(--color-primary) 100%);
             z-index: 2;
-        }
-
-        @media (min-width: 992px) {
-            .hero::before {
-                display: none;
-            }
         }
 
         /* Caja de Estadísticas Flotante (Bodalistic) */
@@ -569,10 +538,11 @@
 
         @media (max-width: 991px) {
             .hero-stat-card {
-                position: absolute;
-                bottom: 120px;
-                left: 50%;
-                transform: translateX(-50%);
+                position: relative;
+                bottom: auto;
+                left: auto;
+                transform: none;
+                margin: 40px auto 0 auto;
                 background-color: rgba(10, 10, 10, 0.85);
                 border: 1px solid rgba(255, 255, 255, 0.08);
                 padding: 16px 28px;
@@ -583,7 +553,7 @@
                 min-width: auto;
             }
             .hero-stat-card:hover {
-                transform: translateX(-50%) translateY(-2px);
+                transform: translateY(-2px);
             }
             .stat-number {
                 font-size: 2rem;
@@ -2323,27 +2293,31 @@
                 submitButton.disabled = true;
                 submitButton.textContent = "Procesando...";
 
+                // Ocultar formulario, mostrar caja de agradecimiento
+                quotingForm.style.display = 'none';
+                successBox.style.display = 'block';
+                
+                // Asegurar que scroll suba ligeramente para ver el éxito
+                const formContainer = document.getElementById('form-wrapper');
+                formContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+                // Crear mensaje para WhatsApp
+                const whatsappNumber = "56942860975";
+                let text = `Hola, me gustaría solicitar una propuesta para un evento.%0A%0A`;
+                text += `*Nombre:* ${candidateName}%0A`;
+                text += `*Teléfono:* ${candidatePhone}%0A`;
+                text += `*Email:* ${candidateEmail}%0A`;
+                if(eventDate) text += `*Fecha Estimada:* ${eventDate}%0A`;
+                if(userComments) text += `*Comentarios:* ${userComments}%0A`;
+
+                // Redirigir a WhatsApp sincrónicamente para evitar bloqueos en móvil
+                window.location.href = `https://wa.me/${whatsappNumber}?text=${text}`;
+
+                // Restaurar botón después de un segundo (por si el usuario vuelve atrás en el navegador)
                 setTimeout(() => {
-                    // Ocultar formulario, mostrar caja de agradecimiento
-                    quotingForm.style.display = 'none';
-                    successBox.style.display = 'block';
-                    
-                    // Asegurar que scroll suba ligeramente para ver el éxito
-                    const formContainer = document.getElementById('form-wrapper');
-                    formContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-
-                    // Crear mensaje para WhatsApp
-                    const whatsappNumber = "56942860975";
-                    let text = `Hola, me gustaría solicitar una propuesta para un evento.%0A%0A`;
-                    text += `*Nombre:* ${candidateName}%0A`;
-                    text += `*Teléfono:* ${candidatePhone}%0A`;
-                    text += `*Email:* ${candidateEmail}%0A`;
-                    if(eventDate) text += `*Fecha Estimada:* ${eventDate}%0A`;
-                    if(userComments) text += `*Comentarios:* ${userComments}%0A`;
-
-                    // Redirigir a WhatsApp (usar window.location.href para que funcione en móviles sin ser bloqueado por popup blockers)
-                    window.location.href = `https://wa.me/${whatsappNumber}?text=${text}`;
-                }, 1200);
+                    submitButton.disabled = false;
+                    submitButton.textContent = originalText;
+                }, 1000);
             });
 
             // Poder volver a cotizar si se requiere
