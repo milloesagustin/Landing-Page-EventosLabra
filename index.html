@@ -1611,11 +1611,31 @@
        ========================================================================== -->
     <header id="main-header">
         <div class="container navbar-container">
-            <a href="#" class="logo" id="logo-link" style="display: flex; align-items: center; gap: 10px;">
-                <img src="/images/logo.jpeg" alt="Labra Eventos Logo" style="height: 50px; border-radius: 5px;">
+            <a href="#" class="logo" id="logo-link" style="display: flex; align-items: center; gap: 20px;">
+                <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="gold-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#D4AF37" />
+                            <stop offset="50%" stop-color="#FFF2CD" />
+                            <stop offset="100%" stop-color="#AA7C11" />
+                        </linearGradient>
+                    </defs>
+                    
+                    <path d="M 50 10 A 40 40 0 1 0 90 50" stroke="url(#gold-grad)" stroke-width="1.5" fill="none" stroke-linecap="round" />
+                    
+                    <path d="M75 25 Q 77 32 84 34 Q 77 36 75 43 Q 73 36 66 34 Q 73 32 75 25 Z" fill="url(#gold-grad)"/>
+                    <path d="M85 15 Q 86 18 89 19 Q 86 20 85 23 Q 84 20 81 19 Q 84 18 85 15 Z" fill="url(#gold-grad)"/>
+                    <path d="M92 35 Q 92.5 37 94 37.5 Q 92.5 38 92 40 Q 91.5 38 90 37.5 Q 91.5 37 92 35 Z" fill="url(#gold-grad)"/>
+
+                    <text x="40" y="72" font-family="'Playfair Display', 'Times New Roman', serif" font-size="58" fill="url(#gold-grad)" text-anchor="middle">L</text>
+                    <text x="65" y="72" font-family="'Playfair Display', 'Times New Roman', serif" font-size="70" fill="url(#gold-grad)" text-anchor="middle">A</text>
+                    
+                    <path d="M 20 72 Q 40 90 85 65" stroke="url(#gold-grad)" stroke-width="2" fill="none" stroke-linecap="round" />
+                    <path d="M 30 70 Q 40 82 78 63" stroke="url(#gold-grad)" stroke-width="0.5" fill="none" stroke-linecap="round" />
+                </svg>
                 <div style="display: flex; flex-direction: column; align-items: flex-start; justify-content: center; line-height: 1;">
-                    <span style="font-family: var(--font-serif); font-size: 1.15rem; font-weight: 600; color: var(--color-white); letter-spacing: 0.12em; text-transform: uppercase; margin: 0; padding: 0; border: none;">LABRA</span>
-                    <span style="font-family: var(--font-sans); font-size: 0.52rem; font-weight: 600; color: var(--color-accent-gold); letter-spacing: 0.35em; text-transform: uppercase; margin: 3px 0 0 0; padding: 0; border: none;">EVENTOS</span>
+                    <span style="font-family: var(--font-serif); font-size: 2.8rem; font-weight: 600; color: var(--color-white); letter-spacing: 0.12em; text-transform: uppercase; margin: 0; padding: 0; border: none;">LABRA</span>
+                    <span style="font-family: var(--font-sans); font-size: 1.2rem; font-weight: 600; color: var(--color-accent-gold); letter-spacing: 0.35em; text-transform: uppercase; margin: 6px 0 0 0; padding: 0; border: none;">EVENTOS</span>
                 </div>
             </a>
             
@@ -1969,23 +1989,16 @@
                     <h4 style="font-family: var(--font-serif); font-size: 1.3rem; letter-spacing: 0.05em; text-transform: none;">Eventos Labra</h4>
                     <p>Producción exclusiva de eventos, banquetes premium de autor y decoración paisajística con sello innovador en todo Chile.</p>
                     <div class="social-links">
-                        <a href="#" class="social-btn" aria-label="Seguir en Instagram">
+                        <a href="https://www.instagram.com/eventoslabra/" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Seguir en Instagram">
                             <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                 <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
                                 <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
                                 <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
                             </svg>
                         </a>
-                        <a href="#" class="social-btn" aria-label="Seguir en Facebook">
+                        <a href="https://www.facebook.com/eventoslabra/" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Seguir en Facebook">
                             <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                 <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
-                            </svg>
-                        </a>
-                        <a href="#" class="social-btn" aria-label="Seguir en LinkedIn">
-                            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
-                                <rect x="2" y="9" width="4" height="12"/>
-                                <circle cx="4" cy="4" r="2"/>
                             </svg>
                         </a>
                     </div>
@@ -2300,11 +2313,12 @@
             quotingForm.addEventListener('submit', (e) => {
                 e.preventDefault();
 
-                // Recopilar datos (por si se conectara a un CRM)
+                // Recopilar datos
                 const candidateName = document.getElementById('user-name').value;
                 const candidatePhone = document.getElementById('user-phone').value;
                 const candidateEmail = document.getElementById('user-email').value;
-                console.log('Contacto recibido con éxito para:', { name: candidateName, phone: candidatePhone, email: candidateEmail });
+                const eventDate = document.getElementById('event-date').value;
+                const userComments = document.getElementById('user-comments').value;
 
                 // Efecto de carga en botón
                 const submitButton = document.getElementById('btn-submit-action');
@@ -2320,6 +2334,18 @@
                     // Asegurar que scroll suba ligeramente para ver el éxito
                     const formContainer = document.getElementById('form-wrapper');
                     formContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+                    // Crear mensaje para WhatsApp
+                    const whatsappNumber = "56942860975";
+                    let text = `Hola, me gustaría solicitar una propuesta para un evento.%0A%0A`;
+                    text += `*Nombre:* ${candidateName}%0A`;
+                    text += `*Teléfono:* ${candidatePhone}%0A`;
+                    text += `*Email:* ${candidateEmail}%0A`;
+                    if(eventDate) text += `*Fecha Estimada:* ${eventDate}%0A`;
+                    if(userComments) text += `*Comentarios:* ${userComments}%0A`;
+
+                    // Redirigir a WhatsApp
+                    window.open(`https://wa.me/${whatsappNumber}?text=${text}`, '_blank');
                 }, 1200);
             });
 
