@@ -463,39 +463,52 @@
             }
         }
 
-        /* Columna Derecha: Imagen de Fondo Cinematográfica */
-        .hero-bg {
+        /* Contenedor de Slideshow de Fondo Cinematográfica */
+        .hero-bg-container {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1920&q=80');
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .hero-slide {
+            position: absolute;
+            inset: 0;
             background-size: cover;
             background-position: center;
+            opacity: 0;
+            transition: opacity 1.8s ease-in-out;
             z-index: 1;
+        }
+
+        .hero-slide.active {
             opacity: 0.25;
             animation: zoomSlow 18s ease-in-out infinite alternate;
         }
 
         @media (min-width: 992px) {
-            .hero-bg {
+            .hero-bg-container {
                 position: relative;
                 grid-column: 2;
                 height: 100%;
                 width: 100%;
-                opacity: 0.65;
-                animation: none;
                 border-left: 1px solid var(--border-subtle);
             }
 
-            .hero-bg::before {
+            .hero-bg-container::before {
                 content: '';
                 position: absolute;
                 inset: 0;
                 background: linear-gradient(90deg, var(--color-primary) 0%, rgba(10, 10, 10, 0) 100%);
                 z-index: 2;
                 pointer-events: none;
+            }
+
+            .hero-slide.active {
+                opacity: 0.65;
             }
         }
 
@@ -1598,8 +1611,12 @@
        ========================================================================== -->
     <header id="main-header">
         <div class="container navbar-container">
-            <a href="#" class="logo" id="logo-link">
-                Eventos Labra<span>Chile</span>
+            <a href="#" class="logo" id="logo-link" style="display: flex; align-items: center; gap: 10px;">
+                <img src="/images/logo.jpeg" alt="Labra Eventos Logo" style="height: 50px; border-radius: 5px;">
+                <div style="display: flex; flex-direction: column; align-items: flex-start; justify-content: center; line-height: 1;">
+                    <span style="font-family: var(--font-serif); font-size: 1.15rem; font-weight: 600; color: var(--color-white); letter-spacing: 0.12em; text-transform: uppercase; margin: 0; padding: 0; border: none;">LABRA</span>
+                    <span style="font-family: var(--font-sans); font-size: 0.52rem; font-weight: 600; color: var(--color-accent-gold); letter-spacing: 0.35em; text-transform: uppercase; margin: 3px 0 0 0; padding: 0; border: none;">EVENTOS</span>
+                </div>
             </a>
             
             <nav id="navbar">
@@ -1613,7 +1630,7 @@
             </nav>
 
             <div class="navbar-actions">
-                <a href="#cotizar" class="btn btn-gold btn-quote">Cotizar Boda</a>
+                <a href="#cotizar" class="btn btn-gold btn-quote">Cotizar Evento</a>
             </div>
 
             <!-- Botón menú hamburguesa -->
@@ -1629,13 +1646,19 @@
        2. HERO SECTION
        ========================================================================== -->
     <section class="hero" id="inicio">
-        <div class="hero-bg"></div>
+        <div class="hero-bg-container">
+            <div class="hero-slide active" style="background-image: url('/images/foto_evento1.jpeg')"></div>
+            <div class="hero-slide" style="background-image: url('/images/salon1.jpeg')"></div>
+            <div class="hero-slide" style="background-image: url('/images/foto_evento2.jpeg')"></div>
+            <div class="hero-slide" style="background-image: url('/images/salon3.jpeg')"></div>
+            <div class="hero-slide" style="background-image: url('/images/foto_comida1.jpeg')"></div>
+        </div>
         <div class="hero-content">
             <span class="hero-tagline">PRODUCTORA EXCLUSIVA DE EVENTOS</span>
-            <h1 class="hero-title">El matrimonio que siempre soñaste, <em>sin el estrés</em> de organizarlo</h1>
+            <h1 class="hero-title">El evento que siempre soñaste, <em>sin el estrés</em> de organizarlo</h1>
             <p class="hero-desc">En Eventos Labra diseñamos, planificamos y producimos celebraciones de alta gama con un sello vanguardista y único en Chile. Hacemos realidad cada detalle para que tu única tarea sea celebrar.</p>
             <div class="hero-actions">
-                <a href="#cotizar" id="hero-btn-primary" class="btn btn-gold">Planificar Mi Boda</a>
+                <a href="#cotizar" id="hero-btn-primary" class="btn btn-gold">Planificar Mi Evento</a>
                 <a href="#servicios" id="hero-btn-secondary" class="btn btn-outline">Explorar Servicios</a>
             </div>
         </div>
@@ -1679,7 +1702,7 @@
                             <li>Cenas en 3 y 4 tiempos</li>
                             <li>Coctelería conceptual de autor</li>
                             <li>Estaciones gourmet interactivas</li>
-                            <li>Maridaje con viñedos seleccionados</li>
+                            <li>Maridaje perfecto para tus comidas</li>
                         </ul>
                     </article>
 
@@ -1693,12 +1716,12 @@
                             </svg>
                         </div>
                         <h3 class="service-card-title">Salones Exclusivos</h3>
-                        <p class="service-card-desc">Ubicaciones majestuosas que inspiran magia. Alianza con los mejores centros de eventos, casonas históricas y viñas más exclusivas de la zona central de Chile.</p>
+                        <p class="service-card-desc">Los salones más bonitos y espectaculares para que tu evento sea perfecto y acorde a tus necesidades.</p>
                         <ul class="service-details">
-                            <li>Casonas privadas en Pirque y Chicureo</li>
-                            <li>Viñedos en Casablanca y Colchagua</li>
+                            <li>Calera de Tango, Chicureo, Padre Hurtado y Lampa</li>
                             <li>Salones cerrados climatizados</li>
-                            <li>Jardines infinitos para ceremonias al aire libre</li>
+                            <li>Jardines para ceremonias al aire libre</li>
+                            <li>Capacidad adaptable a tus invitados</li>
                         </ul>
                     </article>
 
@@ -1714,10 +1737,10 @@
                         <h3 class="service-card-title">Producción Integral</h3>
                         <p class="service-card-desc">Organización absoluta de principio a fin. Nuestro equipo técnico y de diseño da vida a atmósferas envolventes para crear recuerdos imborrables y sofisticados.</p>
                         <ul class="service-details">
-                            <li>Wedding Planning integral (1-on-1)</li>
-                            <li>Decoración floral, mobiliario y arte</li>
-                            <li>Iluminación robótica y sonido de concierto</li>
-                            <li>Coordinación de proveedores y cronograma exacto</li>
+                            <li>Dj en vivo</li>
+                            <li>Menú personalizado</li>
+                            <li>Decoraciones de alto nivel</li>
+                            <li>Productos de primera calidad para una experiencia inolvidable</li>
                         </ul>
                     </article>
                 </div>
@@ -1732,89 +1755,58 @@
                 <div class="section-header">
                     <span class="section-subtitle">NUESTRO PORTAFOLIO</span>
                     <h2 class="section-title">Postales de Ensueño</h2>
-                    <p class="section-desc">Mira el reflejo del amor y la elegancia que logramos esculpir en cada uno de nuestros matrimonios y eventos exclusivos.</p>
+                    <p class="section-desc">Mira el reflejo del amor y la elegancia que logramos esculpir en cada uno de nuestros eventos exclusivos.</p>
                 </div>
 
-                <!-- Filtro de la galeria interactivo -->
-                <div class="gallery-filter" id="gallery-controls">
-                    <button class="filter-btn active" data-filter="all">Ver Todo</button>
-                    <button class="filter-btn" data-filter="banquetes">Banquetería</button>
-                    <button class="filter-btn" data-filter="salones">Espacios</button>
-                    <button class="filter-btn" data-filter="ambientaciones">Decoración</button>
-                </div>
-
+                <!-- La galería ya no utiliza filtros -->
                 <div class="gallery-grid" id="main-gallery-grid">
                     
-                    <!-- Imagen 1 -->
-                    <div class="gallery-item lg-horizontal" data-category="salones">
-                        <img src="https://images.unsplash.com/photo-1519225495810-7512c3df6f26?auto=format&fit=crop&w=1200&h=600&q=80" alt="Arreglo de Mesas Imperial" class="gallery-img">
-                        <div class="gallery-overlay">
-                            <span class="gallery-category">Espacios</span>
-                            <h3 class="gallery-title">Montaje de Gala en Viña de Casablanca</h3>
-                        </div>
+                    <div class="gallery-item lg-horizontal">
+                        <img src="/images/foto_evento1.jpeg" alt="Evento" class="gallery-img">
                     </div>
 
-                    <!-- Imagen 2 -->
-                    <div class="gallery-item" data-category="ambientaciones">
-                        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=800&q=80" alt="Beso de la pareja bajo una casona" class="gallery-img">
-                        <div class="gallery-overlay">
-                            <span class="gallery-category">Decoración</span>
-                            <h3 class="gallery-title">Sendero de Hojas y Flores Silvestres</h3>
-                        </div>
+                    <div class="gallery-item">
+                        <img src="/images/foto_comida1.jpeg" alt="Comida" class="gallery-img">
                     </div>
 
-                    <!-- Imagen 3 -->
-                    <div class="gallery-item" data-category="banquetes">
-                        <img src="https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=800&q=80" alt="Champagne Gourmet" class="gallery-img">
-                        <div class="gallery-overlay">
-                            <span class="gallery-category">Banquetería</span>
-                            <h3 class="gallery-title">Estación de Champaña de Autor</h3>
-                        </div>
+                    <div class="gallery-item">
+                        <img src="/images/salon1.jpeg" alt="Salón" class="gallery-img">
                     </div>
 
-                    <!-- Imagen 4 -->
-                    <div class="gallery-item lg-vertical" data-category="ambientaciones">
-                        <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=600&h=1200&q=80" alt="Ceremonia al Aire Libre" class="gallery-img">
-                        <div class="gallery-overlay">
-                            <span class="gallery-category">Decoración</span>
-                            <h3 class="gallery-title">Altar Bohemio y Linternas Rústicas</h3>
-                        </div>
+                    <div class="gallery-item lg-vertical">
+                        <img src="/images/foto_evento2.jpeg" alt="Evento" class="gallery-img">
                     </div>
 
-                    <!-- Imagen 5 -->
-                    <div class="gallery-item" data-category="banquetes">
-                        <img src="https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=800&q=80" alt="Plato Gourmet" class="gallery-img">
-                        <div class="gallery-overlay">
-                            <span class="gallery-category">Banquetería</span>
-                            <h3 class="gallery-title">Entradas Frías de Centolla Magallánica</h3>
-                        </div>
+                    <div class="gallery-item">
+                        <img src="/images/foto_comida2.jpeg" alt="Comida" class="gallery-img">
                     </div>
 
-                    <!-- Imagen 6 -->
-                    <div class="gallery-item" data-category="salones">
-                        <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=800&q=80" alt="Luz en un salón majestuoso" class="gallery-img">
-                        <div class="gallery-overlay">
-                            <span class="gallery-category">Espacios</span>
-                            <h3 class="gallery-title">Iluminación Perimetral en Casona de Pirque</h3>
-                        </div>
+                    <div class="gallery-item">
+                        <img src="/images/salon2.jpeg" alt="Salón" class="gallery-img">
                     </div>
 
-                    <!-- Imagen 7 -->
-                    <div class="gallery-item" data-category="banquetes">
-                        <img src="https://images.unsplash.com/photo-1535254973040-607b474cb50d?auto=format&fit=crop&w=800&q=80" alt="Pastel de Matrimonio Artístico" class="gallery-img">
-                        <div class="gallery-overlay">
-                            <span class="gallery-category">Banquetería</span>
-                            <h3 class="gallery-title">Naked Cake con Detalles de Oro Comestible</h3>
-                        </div>
+                    <div class="gallery-item">
+                        <img src="/images/foto_evento3.jpeg" alt="Evento" class="gallery-img">
                     </div>
 
-                    <!-- Imagen 8 -->
-                    <div class="gallery-item" data-category="ambientaciones">
-                        <img src="https://images.unsplash.com/photo-1507504038482-76210374e2a8?auto=format&fit=crop&w=800&q=80" alt="Arco Floral Sublime" class="gallery-img">
-                        <div class="gallery-overlay">
-                            <span class="gallery-category">Decoración</span>
-                            <h3 class="gallery-title">Cenáculo Bajo Pérgolas de Flores de Estación</h3>
-                        </div>
+                    <div class="gallery-item">
+                        <img src="/images/foto_comida3.jpeg" alt="Comida" class="gallery-img">
+                    </div>
+                    
+                    <div class="gallery-item lg-horizontal">
+                        <img src="/images/salon3.jpeg" alt="Salón" class="gallery-img">
+                    </div>
+                    
+                    <div class="gallery-item">
+                        <img src="/images/foto_evento4.jpeg" alt="Evento" class="gallery-img">
+                    </div>
+                    
+                    <div class="gallery-item lg-vertical">
+                        <img src="/images/foto_comida4.jpeg" alt="Comida" class="gallery-img">
+                    </div>
+                    
+                    <div class="gallery-item">
+                        <img src="/images/salon4.jpeg" alt="Salón" class="gallery-img">
                     </div>
 
                 </div>
@@ -1828,18 +1820,18 @@
             <div class="container">
                 <div class="section-header">
                     <span class="section-subtitle">HISTORIAS INOLVIDABLES</span>
-                    <h2 class="section-title">Palabras de Nuestros Novios</h2>
+                    <h2 class="section-title">Palabras de Nuestros Clientes</h2>
                 </div>
 
                 <div class="testimonials-slider">
                     <!-- Carousel simple controlado por JS -->
                     <div class="testimonial-item" id="testimonial-display">
                         <blockquote class="testimonial-quote" id="testimonial-text">
-                            "Buscábamos exclusividad y excelencia culinaria. Eventos Labra no solo nos diseñó un banquete inolvidable para 250 invitados en Isla de Maipo, sino que se encargó de cada detalle decorativo. Pudimos vivir nuestro gran día flotando en una nube de relajo y felicidad plena."
+                            "Buscábamos exclusividad y excelencia culinaria. Eventos Labra no solo nos diseñó un banquete inolvidable para 250 invitados, sino que se encargó de cada detalle decorativo. Pudimos vivir nuestro evento flotando en una nube de relajo y felicidad plena."
                         </blockquote>
                         <div class="testimonial-author">
                             <h4 class="author-name" id="testimonial-name">María Jesús & Cristóbal</h4>
-                            <span class="author-meta" id="testimonial-meta">Matrimonio en Casablanca | Enero 2026</span>
+                            <span class="author-meta" id="testimonial-meta">Evento Corporativo en Calera de Tango | Enero 2026</span>
                         </div>
                     </div>
                     
@@ -1862,7 +1854,7 @@
                     <!-- Información y confianza -->
                     <div class="quote-info" id="conversion-info">
                         <h2 class="quote-info-title">Creemos juntos el paisaje de tus recuerdos</h2>
-                        <p class="quote-info-desc">Te invitamos a una primera reunión de asesoría integral sin costo en nuestra oficina de Alonso de Córdova (Vitacura) o de forma virtual, donde diseñaremos el croquis conceptual de tu boda.</p>
+                        <p class="quote-info-desc">Te invitamos a una primera reunión de asesoría integral sin costo de forma virtual o presencial, donde diseñaremos el croquis conceptual de tu evento.</p>
                         
                         <div class="feature-bullets">
                             <!-- Bullet 1 -->
@@ -1874,7 +1866,7 @@
                                 </div>
                                 <div class="bullet-text">
                                     <h4>Puntualidad y Garantía Integral</h4>
-                                    <p>Coordinador exclusivo (Wedding Planner Senior) asignado 24/7 para tu proyecto.</p>
+                                    <p>Coordinador exclusivo (Productor Senior) asignado 24/7 para tu proyecto.</p>
                                 </div>
                             </div>
 
@@ -1886,8 +1878,8 @@
                                     </svg>
                                 </div>
                                 <div class="bullet-text">
-                                    <h4>Calidad Gastronómica Certificada</h4>
-                                    <p>Materias primas frescas del mar chileno y hortalizas de cultivos boutique locales.</p>
+                                    <h4>Alta Cocina y Gastronomía</h4>
+                                    <p>Ingredientes de primera calidad seleccionados para brindar la mejor experiencia en cada bocado.</p>
                                 </div>
                             </div>
 
@@ -1929,62 +1921,14 @@
                                 <input type="email" id="user-email" class="form-input" placeholder="Ej: sofia@correo.cl" required>
                             </div>
 
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label class="form-label" for="event-date">Fecha Estimada</label>
-                                    <input type="date" id="event-date" class="form-input">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label" for="event-venue">Tipo de Espacio</label>
-                                    <select id="event-venue" class="form-select">
-                                        <option value="vina">Viñedos de Casablanca</option>
-                                        <option value="casona">Casona Solariega en Pirque</option>
-                                        <option value="playa">Borde de Laguna o Playa</option>
-                                        <option value="personalizado">Espacio Propio / Otro</option>
-                                    </select>
-                                </div>
-                            </div>
-
                             <div class="form-group">
-                                <label class="form-label" for="guest-count">Número Estimado de Invitados</label>
-                                <select id="guest-count" class="form-select">
-                                    <option value="menos-100">Menos de 100 invitados</option>
-                                    <option value="100-200" selected>Entre 100 y 200 invitados</option>
-                                    <option value="200-350">Entre 200 y 350 invitados</option>
-                                    <option value="mas-350">Más de 350 invitados</option>
-                                </select>
-                            </div>
-
-                            <!-- Servicios que les interesa agregar -->
-                            <div class="services-interest">
-                                <label class="form-label">Servicios Satélites Adicionales</label>
-                                <div class="checkbox-grid">
-                                    <label class="checkbox-label">
-                                        <input type="checkbox" id="add-cocktail">
-                                        <div class="checkbox-custom"></div>
-                                        <span>Barra Libre de Autor</span>
-                                    </label>
-                                    <label class="checkbox-label">
-                                        <input type="checkbox" id="add-decor">
-                                        <div class="checkbox-custom"></div>
-                                        <span>Decoración Temática</span>
-                                    </label>
-                                    <label class="checkbox-label">
-                                        <input type="checkbox" id="add-photo">
-                                        <div class="checkbox-custom"></div>
-                                        <span>Drone & Fotografía</span>
-                                    </label>
-                                    <label class="checkbox-label">
-                                        <input type="checkbox" id="add-dj">
-                                        <div class="checkbox-custom"></div>
-                                        <span>Audio & DJ Vanguardia</span>
-                                    </label>
-                                </div>
+                                <label class="form-label" for="event-date">Fecha Estimada</label>
+                                <input type="date" id="event-date" class="form-input">
                             </div>
 
                             <div class="form-group">
                                 <label class="form-label" for="user-comments">Cuéntanos sobre tu visión</label>
-                                <textarea id="user-comments" class="form-textarea" placeholder="¿Tienen un estilo en mente? ¿Planes particulares para el banquete?"></textarea>
+                                <textarea id="user-comments" class="form-textarea" placeholder="¿Tienen un estilo en mente? ¿Planes particulares para el evento?"></textarea>
                             </div>
 
                             <button type="submit" class="btn btn-gold btn-submit" id="btn-submit-action">Solicitar Propuesta</button>
@@ -1994,7 +1938,7 @@
                         <div class="form-success-message" id="success-box">
                             <div class="success-seal">✓</div>
                             <h3 class="success-title">¡Reunión Reservada!</h3>
-                            <p class="success-text">Hemos asignado tu proyecto a una de nuestras Wedding Planners Senior. Te contactaremos en las próximas 12 horas hábiles vía WhatsApp para agendar tu asesoría gratuita de 30 minutos.</p>
+                            <p class="success-text">Hemos asignado tu proyecto a uno de nuestros Productores Senior. Te contactaremos en las próximas 12 horas hábiles vía WhatsApp para agendar tu asesoría gratuita de 30 minutos.</p>
                             <button class="btn btn-outline" id="btn-reset-form" style="padding: 10px 20px; font-size: 0.75rem;">Volver al Formulario</button>
                         </div>
                     </div>
@@ -2023,7 +1967,7 @@
                 <!-- Identidad -->
                 <div class="footer-widget footer-about">
                     <h4 style="font-family: var(--font-serif); font-size: 1.3rem; letter-spacing: 0.05em; text-transform: none;">Eventos Labra</h4>
-                    <p>Producción exclusiva de matrimonios, banquetes premium de autor y decoración paisajística con sello innovador en todo Chile.</p>
+                    <p>Producción exclusiva de eventos, banquetes premium de autor y decoración paisajística con sello innovador en todo Chile.</p>
                     <div class="social-links">
                         <a href="#" class="social-btn" aria-label="Seguir en Instagram">
                             <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -2054,7 +1998,7 @@
                         <li><a href="#">Inicio</a></li>
                         <li><a href="#servicios">Servicios Premium</a></li>
                         <li><a href="#galeria">Galería Exclusiva</a></li>
-                        <li><a href="#testimonios">Opiniones de Parejas</a></li>
+                        <li><a href="#testimonios">Opiniones de Clientes</a></li>
                         <li><a href="#cotizar">Cotización Online</a></li>
                     </ul>
                 </nav>
@@ -2064,7 +2008,7 @@
                     <h4>Menú Premium</h4>
                     <ul class="footer-links">
                         <li><a href="#servicios">Gourmet & Banquetería</a></li>
-                        <li><a href="#servicios">Casonas e Iglesias</a></li>
+                        <li><a href="#servicios">Salones y Espacios</a></li>
                         <li><a href="#servicios">DJ y Pista Led</a></li>
                         <li><a href="#cotizar">Planificación Integral</a></li>
                         <li><a href="#servicios">Flores & Paisajismo</a></li>
@@ -2073,27 +2017,20 @@
 
                 <!-- Contacto & Ubicacion -->
                 <div class="footer-widget">
-                    <h4>Casa Matriz</h4>
+                    <h4>Contacto</h4>
                     <ul class="contact-info">
-                        <li>
-                            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                                <circle cx="12" cy="10" r="3"/>
-                            </svg>
-                            <span>Alonso de Córdova 3788,<br>Vitacura, Santiago de Chile</span>
-                        </li>
                         <li>
                             <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                 <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
                             </svg>
-                            <span>+56 9 8245 4489</span>
+                            <span>+56942860975</span>
                         </li>
                         <li>
                             <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
                                 <polyline points="22,6 12,13 2,6"/>
                             </svg>
-                            <span>contacto@eventoslabra.cl</span>
+                            <span>Djlabrachile@gmail.com</span>
                         </li>
                     </ul>
                 </div>
@@ -2132,6 +2069,18 @@
        ========================================================================== -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- A0. HERO BACKGROUND SLIDESHOW ---
+            const heroSlides = document.querySelectorAll('.hero-slide');
+            let currentSlideIndex = 0;
+
+            if (heroSlides.length > 0) {
+                setInterval(() => {
+                    heroSlides[currentSlideIndex].classList.remove('active');
+                    currentSlideIndex = (currentSlideIndex + 1) % heroSlides.length;
+                    heroSlides[currentSlideIndex].classList.add('active');
+                }, 5000); // Cambia cada 5 segundos
+            }
             
             // --- A. NAVBAR TRANSICIÓN AL HACER SCROLL ---
             const header = document.getElementById('main-header');
@@ -2188,36 +2137,8 @@
             });
 
 
-            // --- D. SISTEMA FILTRADO ITERATIVO DE GALERÍA ---
-            const filterButtons = document.querySelectorAll('#gallery-controls .filter-btn');
+            // --- D. SISTEMA DE GALERÍA (Sin Filtros) ---
             const galleryItems = document.querySelectorAll('.gallery-item');
-
-            filterButtons.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    // Remover activo
-                    filterButtons.forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-
-                    const filterValue = btn.getAttribute('data-filter');
-
-                    galleryItems.forEach(item => {
-                        const itemCategory = item.getAttribute('data-category');
-                        
-                        if (filterValue === 'all' || itemCategory === filterValue) {
-                            item.style.display = 'block';
-                            // Animación de aparición suave
-                            item.style.opacity = '0';
-                            setTimeout(() => {
-                                item.style.opacity = '1';
-                                item.style.transition = 'opacity 0.5s ease';
-                            }, 50);
-                        } else {
-                            item.style.display = 'none';
-                        }
-                    });
-                });
-            });
-
 
             // --- E. LIGHTBOX TOTALMENTE RESPONSIVO ---
             const lightbox = document.getElementById('gallery-lightbox');
@@ -2244,12 +2165,12 @@
                 if (!activeItem) return;
 
                 const imgSrc = activeItem.querySelector('.gallery-img').getAttribute('src');
-                const titleStr = activeItem.querySelector('.gallery-title').textContent;
-                const categoryStr = activeItem.querySelector('.gallery-category').textContent;
+                const titleEl = activeItem.querySelector('.gallery-title');
+                const categoryEl = activeItem.querySelector('.gallery-category');
 
                 lightboxImg.setAttribute('src', imgSrc);
-                lightboxCaption.textContent = titleStr;
-                lightboxSubcaption.textContent = categoryStr;
+                lightboxCaption.textContent = titleEl ? titleEl.textContent : '';
+                lightboxSubcaption.textContent = categoryEl ? categoryEl.textContent : '';
 
                 lightbox.classList.add('active');
                 document.body.style.overflow = 'hidden'; // Evita scroll externo
@@ -2303,19 +2224,24 @@
             // --- F. SLIDER AUTOMÁTICO / INTERACTIVO DE TESTIMONIOS ---
             const testimonialsData = [
                 {
-                    quote: "Buscábamos exclusividad y excelencia culinaria. Eventos Labra no solo nos diseñó un banquete inolvidable para 250 invitados en Isla de Maipo, sino que se encargó de cada detalle decorativo. Pudimos vivir nuestro gran día flotando en una nube de relajo y felicidad plena.",
+                    quote: "Buscábamos exclusividad y excelencia culinaria. Eventos Labra no solo nos diseñó un banquete inolvidable para 250 invitados, sino que se encargó de cada detalle decorativo. Pudimos vivir nuestro evento flotando en una nube de relajo y felicidad plena.",
                     name: "María Jesús & Cristóbal",
-                    meta: "Matrimonio en Casablanca | Enero 2026"
+                    meta: "Evento Corporativo en Calera de Tango | Enero 2026"
                 },
                 {
-                    quote: "La perfección hecha producción. Nuestra boda en los jardines de Pirque lució de cuentos gracias a su diseño de iluminación y arreglos de hortensias blancas. Nuestros invitados quedaron maravillados por la fineza del postre y la barra de coctelería libre.",
-                    name: "Sofía & Andrés",
-                    meta: "Casona Las Condes | Marzo 2026"
+                    quote: "La perfección hecha producción. Nuestra fiesta de aniversario en Chicureo lució de cuentos gracias a su diseño de iluminación y arreglos florales. Nuestros invitados quedaron maravillados por la fineza del postre y la barra de coctelería libre.",
+                    name: "Familia Gómez",
+                    meta: "Aniversario en Chicureo | Marzo 2026"
                 },
                 {
-                    quote: "Sencillamente impecables. Organizar un matrimonio desde el extranjero parecía imposible, pero con Eventos Labra tuvimos reuniones virtuales semanales que nos dieron 100% de confianza. La ejecución del DJ y el banquete gourmet superaron todo promedio.",
-                    name: "Catalina & Michael",
-                    meta: "Viña Anakena | Noviembre 2025"
+                    quote: "Sencillamente impecables. Organizar un evento a distancia parecía imposible, pero con Eventos Labra tuvimos reuniones que nos dieron 100% de confianza. La ejecución del DJ y el banquete gourmet en Padre Hurtado superaron toda expectativa.",
+                    name: "Empresa de Tecnología",
+                    meta: "Evento de Fin de Año en Padre Hurtado | Noviembre 2025"
+                },
+                {
+                    quote: "Insuperables en Lampa. La coordinación y el nivel gastronómico marcaron la diferencia. Cada aspecto fue cuidado minuciosamente, permitiéndonos disfrutar sin ninguna preocupación durante toda la velada.",
+                    name: "Constanza & Diego",
+                    meta: "Celebración en Lampa | Mayo 2025"
                 }
             ];
 
