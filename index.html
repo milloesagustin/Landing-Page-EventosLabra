@@ -1688,10 +1688,7 @@
             <div class="stat-label">SUEÑOS REALIZADOS</div>
         </div>
         
-        <div class="scroll-down">
-            <span>Scroll</span>
-            <div class="scroll-indicator"></div>
-        </div>
+
     </section>
 
     <main>
@@ -2344,8 +2341,8 @@
                     if(eventDate) text += `*Fecha Estimada:* ${eventDate}%0A`;
                     if(userComments) text += `*Comentarios:* ${userComments}%0A`;
 
-                    // Redirigir a WhatsApp
-                    window.open(`https://wa.me/${whatsappNumber}?text=${text}`, '_blank');
+                    // Redirigir a WhatsApp (usar window.location.href para que funcione en móviles sin ser bloqueado por popup blockers)
+                    window.location.href = `https://wa.me/${whatsappNumber}?text=${text}`;
                 }, 1200);
             });
 
